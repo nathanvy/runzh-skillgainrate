@@ -38,6 +38,9 @@ program gainer
   write (*,*) 'Calculating runuo defaults assuming 80% chance of success...'
 
   do
+     !NOTE: for this and other iterations, when using rand(0) that it
+     ! delivers a repeating sequence of uniformly-distributed
+     ! pseudo-random numbers, i.e. the same sequence each runtime
      if ( chance >= rand(0) ) then
         success = 1.0
      else

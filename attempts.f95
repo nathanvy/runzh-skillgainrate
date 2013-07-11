@@ -79,7 +79,12 @@ program gainer
   write (*,*) 'Attempts: ', attempts
 ! end runuo
 
-  write (*,*) 'Calculating cosine-experimentals assuming 80% chance of success...'
+!the particular transformations applied to cos(x) in this section are just
+! values that I determined empirically by playing with wxMaxima until the graph
+! looked right.  This is supposed to be a similar curve to erfc(), described below,
+! but with a gentler drop-off as skill increases
+
+  write (*,*) 'Calculating cosines assuming 80% chance of success...'
 
   skill = 0.0
   total = 0.0
@@ -112,6 +117,8 @@ program gainer
   write (*,*) 'Attempts: ', attempts
 
 ! end cosine
+
+!pgc is a polynomial approximation to erfc(), the Complementary Error Function
   write (*,*) 'Calculating polynomial approximations assuming 80% chance of success...'
   skill = 0.0
   total = 0.0

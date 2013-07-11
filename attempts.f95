@@ -1,7 +1,7 @@
 !basically this program will attempt to calculate the
 ! number of attempts required to grandmaster a given skill
 ! and compare it to the default runuo method which should
-! be around 2700 attempts according to a random forum post
+! be around 2700 attempts to get to 120.0 according to a random forum post
 
 ! I wrote this in about 45 minutes, expect it to be messy and ugly
 
@@ -51,14 +51,22 @@ program gainer
      rgc = rgc / 2
      rgc = rgc * rgainfactor
 
+     if ( rgc < 0.01 ) then
+        rgc = 0.01
+     end if
      if ( rgc >= rand(0) ) then
+        if ( skill < 10.0 ) then
+           skill = skill + 0.3
+           total = total + 0.3
+        else
         skill = skill + 0.1
         total = total + 0.1
      end if
+     end if
      attempts = attempts + 1
 
-     if ( skill > 130.0 ) then
-        write (*,*) 'GM reached...'
+     if ( skill > 120.0 ) then
+        write (*,*) '120 reached...'
         exit
      end if
      
@@ -84,10 +92,10 @@ program gainer
         success = 0.0
      end if
 
-     sgc = (1-chance)*(0.5*cos(skill / 45.0)) + 0.5
+     sgc = (1-chance)*(0.5*cos(skill / 45.0) + 0.5 )
 
      if ( sgc >= rand(0) ) then
-        skill = skill + 0.1
+           skill = skill + 0.1
      end if
      attempts = attempts + 1
 
